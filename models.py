@@ -2,7 +2,7 @@
 from peewee import *
 import datetime
 # Connect to a Postgres database.
-DATABASE = PostgresqlDatabase('flask_dog_app', host='localhost', port=5432)
+DATABASE = PostgresqlDatabase('flask_song_app', host='localhost', port=5432)
 # setup a Song model with a created_at field and at least three properties of CharField(): title, artist, album
 
 
