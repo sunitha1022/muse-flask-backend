@@ -19,6 +19,21 @@ def get_all_songs():
         return jsonify(data={}, status={"code": 401, "message": "Error getting the resources"})
 
 
+@song.route('/<id>', methods=["Delete"])
+def delete_song(id):
+    query = models.Song.delete().where(models.Song.id == id)
+    query.execute()
+    return jsonify(data='resource successfully deleted', status={"code": 200, "message": "resource deleted successfully"})
+
+
+@song.route('/<id>', methods=["PUT"])
+def update_song(id):
+    payload = request.get_json()
+    query = models.Song.update(**payload).where(models.Song.id == id)
+    query.execute()
+    return jsonify(data=model_to_dict(models.Song.get_by_id(id)), status={"code": 200, "message": "resource updated successfully"})
+
+
 @song.route('/', methods=["POST"])
 def create_songs():
     # see request payload anagolous to req.body in express
